@@ -6,7 +6,19 @@ pygame.init()
 fullscreen = pygame.FULLSCREEN
 display_height = 720
 display_width = int(display_height * 1.77777778)
-
+startx1 = 595
+starty1 = 695
+startx2 = 772
+starty2 = 695
+startx3 = 949
+starty3 = 695
+startx4 = 1126
+starty4 = 695
+currentplayer = 0
+playergodown = 0
+players = 0
+beurt = 1
+steps = 0
 pagenum = 1
 
 naamvdgame = "naam van de game"
@@ -36,6 +48,7 @@ helpmsg1 = pygame.image.load('text1.png')
 helpmsg2 = pygame.image.load('text2.png')
 helpmsg3 = pygame.image.load('text3.png')
 helpmsg4 = pygame.image.load('text4.png')
+gamebgimg = pygame.image.load('spelbg.png')
 
 pagetext = helpmsg1
 
@@ -46,6 +59,9 @@ def text_objects(text, font):
 
 def background(x,y):
     scherm.blit(pygame.transform.scale(bgimg, (display_width, display_height)), (0, 0))
+
+def gamebg(x,y):
+    scherm.blit(pygame.transform.scale(gamebgimg, (display_width, display_height)), (0, 0))
 
 graadnum = 0
 graadtext = "easy"
@@ -123,10 +139,40 @@ def optiesmenu():
 
         pygame.display.flip()
 
+def newgamescherm():
+    global NGmenu
+    NGmenu = True
+    clock.tick(60)
+    while NGmenu:
+        for event in pygame.event.get():
+            # print(event)
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+        scherm.fill(white)
+        background(0, 0)
+        largeText = pygame.font.Font("pixel.ttf", 80)
+        TextSurf, TextRect = text_objects(naamvdgame, largeText)
+        TextRect.center = ((display_width / 2), (button5ypos/2))
+        scherm.blit(TextSurf, TextRect)
+
+        # button  x-pos, y-pos, width, height
+        button("2 players", buttonposx, button3ypos, buttonwidth, buttonheight, blue, bright_blue, "opt45")
+        button("3 players", buttonposx, button4ypos, buttonwidth, buttonheight, blue, bright_blue, "opt46")
+        button("4 players", buttonposx, button5ypos, buttonwidth, buttonheight, blue, bright_blue, "opt47")
+        button("vorige", buttonposx, button2ypos, buttonwidth, buttonheight, blue, bright_blue, "opt48")
+
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_ESCAPE]:
+            escapemsg()
+
+        pygame.display.flip()
+
+
 def escapemsg():
     global escmenu
     escmenu = True
-    clock.tick(60  )
+    clock.tick(60)
     while escmenu:
         for event in pygame.event.get():
             # print(event)
@@ -152,35 +198,6 @@ def escapemsg():
 
         pygame.display.flip()
 
-def test():
-    global Mmenu
-    Mmenu = True
-    clock.tick(60)
-    while Mmenu:
-        for event in pygame.event.get():
-            # print(event)
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                quit()
-        scherm.fill(white)
-        background(0, 0)
-        largeText = pygame.font.Font("pixel.ttf", 80)
-        TextSurf, TextRect = text_objects(naamvdgame, largeText)
-        TextRect.center = ((display_width / 2), (button5ypos/2))
-        scherm.blit(TextSurf, TextRect)
-
-        # button  x-pos, y-pos, width, height
-        button("4 players", buttonposx, button3ypos, buttonwidth, buttonheight, blue, bright_blue, "opt45")
-        button("3 players", buttonposx, button4ypos, buttonwidth, buttonheight, blue, bright_blue, "opt46")
-        button("2 players", buttonposx, button5ypos, buttonwidth, buttonheight, blue, bright_blue, "opt47")
-        button("vorige", buttonposx, button2ypos, buttonwidth, buttonheight, blue, bright_blue, "opt48")
-
-        keys = pygame.key.get_pressed()
-        if keys[pygame.K_ESCAPE]:
-            escapemsg()
-
-        pygame.display.flip()
-
 def mainmenu():
     global Mmenu
     Mmenu = True
@@ -198,7 +215,7 @@ def mainmenu():
         TextRect.center = ((display_width / 2), (button5ypos/2))
         scherm.blit(TextSurf, TextRect)
 
-        # button  x-pos, y-pos, width, height
+        #button  x-pos, y-pos, width, height
         button("Quit", buttonposx, button1ypos, buttonwidth, buttonheight, blue, bright_blue, "opt1")
         button("Help", buttonposx, button2ypos, buttonwidth, buttonheight, blue, bright_blue, "opt2")
         button("Options", buttonposx, button3ypos, buttonwidth, buttonheight, blue, bright_blue, "opt3")
@@ -302,7 +319,8 @@ def button(msg,x,y,w,h,ic,ac,action=None):
             print("opt4")
         elif click[0] == 1 and action == "opt5":
             pygame.mixer.music.pause()
-            test()
+            time.sleep(0.3)
+            newgamescherm()
             pygame.mixer.music.unpause()
         elif click[0] == 1 and action == "opt6":
             time.sleep(0.3)
@@ -331,18 +349,19 @@ def button(msg,x,y,w,h,ic,ac,action=None):
         elif click[0] == 1 and action == "opt111":
             optiesmenu()
         elif click[0] == 1 and action == "opt45":
-            game_loop()
-            global players
-            players = 4
-        elif click[0] == 1 and action == "opt46":
-            game_loop()
-            global players
-            players = 3
-        elif click[0] == 1 and action == "opt47":
-            game_loop()
             global players
             players = 2
+            game_loop()
+        elif click[0] == 1 and action == "opt46":
+            global players
+            players = 3
+            game_loop()
+        elif click[0] == 1 and action == "opt47":
+            global players
+            players = 4
+            game_loop()
         elif click[0] == 1 and action == "opt48":
+            time.sleep(0.3)
             mainmenu()
     else:
         pygame.draw.rect(scherm, ic,(x,y,w,h))
@@ -353,8 +372,338 @@ def button(msg,x,y,w,h,ic,ac,action=None):
     scherm.blit(textSurf, textRect)
 
 
+
+def game_loop():
+    gameExit = False
+    global startx1,starty1,startx2,starty2,startx3,starty3,startx4,starty4,beurt
+    while not gameExit:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+        keys = pygame.key.get_pressed()
+        gamebg(0,0)
+        playername = '.'
+        if beurt == 1:
+            playername = "player one"
+        elif beurt == 2:
+            playername = "player two"
+        elif beurt == 3:
+            playername = "player three"
+        elif beurt == 4:
+            playername = "player four"
+        drawboard()
+        if beurt > players:
+            beurt = 1
+        print(beurt)
+        if keys[pygame.K_UP]:
+            move("up")
+        elif keys[pygame.K_DOWN]:
+            move("down")
+        elif keys[pygame.K_LEFT]:
+            move("left")
+        elif keys[pygame.K_RIGHT]:
+            move("right")
+        elif keys[pygame.K_ESCAPE]:
+            pygame.QUIT()
+            quit()
+
+        smallText = pygame.font.Font("pixel.ttf", 27)
+        textSurf, textRect = text_objects("current turn: " + playername, smallText)
+        textRect.center = (190, 30)
+        scherm.blit(textSurf, textRect)
+
+        renderplayer()
+        pygame.display.flip()
+        clock.tick(30)
+
+def player1(x,y):
+    pygame.draw.circle(scherm, (0,255,0),(x,y),15)
+def player2(x,y):
+    pygame.draw.circle(scherm, (255, 255, 0), (x, y), 15)
+def player3(x,y):
+    pygame.draw.circle(scherm, (255, 0, 0), (x, y), 15)
+def player4(x,y):
+    pygame.draw.circle(scherm, (0, 0, 255), (x, y), 15)
+
+def renderplayer():
+    if players == 2:
+        player1(startx1, starty1)
+        player2(startx2, starty2)
+    elif players == 3:
+        player1(startx1, starty1)
+        player2(startx2, starty2)
+        player3(startx3, starty3)
+    elif players == 4:
+        player1(startx1, starty1)
+        player2(startx2, starty2)
+        player3(startx3, starty3)
+        player4(startx4, starty4)
+
+
+def collisioncheck(player):
+    global beurt,steps,currentplayer, playergodown
+    collision = False
+    dead = 0
+    if player == 1:
+        currentplayer = 1
+        if starty1 == 695:
+            pass
+        else:
+            if (startx1,starty1) == (startx2, starty2):
+                print("bots1-2")
+                collision = True
+                dead = 2
+            elif (startx1,starty1) == (startx3, starty3):
+                print("bots1-3")
+                collision = True
+                dead = 3
+            elif (startx1,starty1) == (startx4, starty4):
+                print("bots1-4")
+                collision = True
+                dead = 4
+    elif player == 2:
+        currentplayer = 2
+        if starty2 == 695:
+            pass
+        else:
+            if (startx2, starty2) == (startx1, starty1):
+                print("bots2-1")
+                collision = True
+                dead = 1
+            elif (startx2, starty2) == (startx3, starty3):
+                print("bots2-3")
+                collision = True
+                dead = 3
+            elif (startx2, starty2) == (startx4, starty4):
+                print("bots2-4")
+                collision = True
+                dead = 4
+    elif player == 3:
+        currentplayer = 3
+        if starty3 == 695:
+            pass
+        else:
+            if (startx3, starty3) == (startx1, starty1):
+                print("bots3-1")
+                collision = True
+                dead = 1
+            elif (startx3, starty3) == (startx2, starty2):
+                print("bots3-2")
+                collision = True
+                dead = 2
+            elif (startx3, starty3) == (startx4, starty4):
+                print("bots3-4")
+                collision = True
+                dead = 4
+    elif player == 4:
+        currentplayer = 4
+        if starty4 == 695:
+            pass
+        else:
+            if (startx4, starty4) == (startx1, starty1):
+                print("bots4-1")
+                collision = True
+                dead = 1
+            elif (startx4, starty4) == (startx2, starty2):
+                print("bots4-2")
+                collision = True
+                dead = 2
+            elif (startx4, starty4) == (startx3, starty3):
+                print("bots4-3")
+                collision = True
+                dead = 3
+
+    if collision == True:
+        global collision
+        playergodown = dead
+        rolldice()
+        while steps != 0:
+            godown("down")
+    beurt += 1
+
+
+
+def rolldice():
+    end = 0
+    dd1 = pygame.image.load('dice1.png')
+    dd2 = pygame.image.load('dice2.png')
+    dd3 = pygame.image.load('dice3.png')
+    dd4 = pygame.image.load('dice4.png')
+    dd5 = pygame.image.load('dice5.png')
+    dd6 = pygame.image.load('dice6.png')
+    def diceimg(img):
+        scherm.blit(pygame.transform.scale(img, (100, 100)), (20, 20))
+    for d in range(0, 12):
+        global steps
+        n = random.randint(1, 6)
+        if n == 1:
+            diceimg(dd1)
+            end = 1
+        elif n == 2:
+            diceimg(dd1)
+            end = 1
+        elif n == 3:
+            diceimg(dd2)
+            end = 2
+        elif n == 4:
+            diceimg(dd2)
+            end = 2
+        elif n == 5:
+            diceimg(dd3)
+            end = 3
+        elif n == 6:
+            diceimg(dd3)
+            end = 3
+        time.sleep(0.1)
+        renderplayer()
+        pygame.display.flip()
+    steps = end
+    time.sleep(1.5)
+
+def godown(direction):
+    global startx1, starty1, startx2, starty2, startx3, starty3, startx4, starty4
+    global steps
+    clock.tick(30)
+    if direction == "down":
+        rolldice()
+        print(steps)
+        while steps != 0:
+            time.sleep(0.2)
+            if playergodown == 1:
+                starty1 += 45
+                if starty1 > display_height:
+                    starty1 = 695
+            elif playergodown == 2:
+                starty2 += 45
+                if starty2 > display_height:
+                    starty2 = 695
+            elif playergodown == 3:
+                starty3 += 45
+                if starty3 > display_height:
+                    starty3 = 695
+            elif playergodown == 4:
+                starty4 += 45
+                if starty4 > display_height:
+                    starty4 = 695
+            steps -= 1
+            drawboard()
+            renderplayer()
+            pygame.display.flip()
+def move(x):
+    global startx1, starty1, startx2, starty2, startx3, starty3, startx4, starty4
+    global steps
+    clock.tick(30)
+    if x == "left":
+        rolldice()
+        print(steps)
+        while steps != 0:
+            time.sleep(0.2)
+            if beurt == 1:
+                startx1 -= 177
+                if startx1 < 560:
+                    startx1 = (1126)
+            elif beurt == 2:
+                startx2 -= 177
+                if startx2 < 560:
+                    startx2 = (1126)
+            elif beurt == 3:
+                startx3 -= 177
+                if startx3 < 560:
+                    startx3 = (1126)
+            elif beurt == 4:
+                startx4 -= 177
+                if startx4 < 560:
+                    startx4 = (1126)
+            steps -= 1
+            drawboard()
+            renderplayer()
+            pygame.display.flip()
+    elif x == "right":
+        rolldice()
+        print(steps)
+        while steps != 0:
+            time.sleep(0.2)
+            if beurt == 1:
+                startx1 += 177
+                if startx1 > 1200:
+                    startx1 = 595
+            elif beurt == 2:
+                startx2 += 177
+                if startx2 > 1200:
+                    startx2 = 595
+            elif beurt == 3:
+                startx3 += 177
+                if startx3 > 1200:
+                    startx3 = 595
+            elif beurt == 4:
+                startx4 += 177
+                if startx4 > 1200:
+                    startx4 = 595
+            steps -= 1
+            drawboard()
+            renderplayer()
+            pygame.display.flip()
+    elif x == "up":
+        rolldice()
+        print(steps)
+        while steps != 0:
+            time.sleep(0.2)
+            if beurt == 1:
+                starty1 -= 45
+                if starty1 < 0:
+                    pass
+            elif beurt == 2:
+                starty2 -= 45
+                if starty2 < 0:
+                    pass
+            elif beurt == 3:
+                starty3 -= 45
+                if starty3 < 0:
+                    pass
+            elif beurt == 4:
+                starty4 -= 45
+                if starty4 < 0:
+                    pass
+            steps -= 1
+            drawboard()
+            renderplayer()
+            pygame.display.flip()
+    elif x == "down":
+        rolldice()
+        print(steps)
+        while steps != 0:
+            time.sleep(0.2)
+            if beurt == 1:
+                starty1 += 45
+                if starty1 > display_height:
+                    starty1 = 695
+            elif beurt == 2:
+                starty2 += 45
+                if starty2 > display_height:
+                    starty2 = 695
+            elif beurt == 3:
+                starty3 += 45
+                if starty3 > display_height:
+                    starty3 = 695
+            elif beurt == 4:
+                starty4 += 45
+                if starty4 > display_height:
+                    starty4 = 695
+            steps -= 1
+            drawboard()
+            renderplayer()
+            pygame.display.flip()
+    collisioncheck(beurt)
+    print(beurt)
+
+
+def drawboard():
+    for yas in range(0, 16):
+        for xas in range(0, 8):
+            if xas > 2 and xas < 7:
+                pygame.draw.rect(scherm, (0, 0, 120), [(xas * 177) + 45, yas * 45, 35, 35])
+
 def Menu():
     introscherm()
 Menu()
-
-
