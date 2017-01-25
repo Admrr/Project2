@@ -65,7 +65,7 @@ def gamebg(x,y):
     scherm.blit(pygame.transform.scale(gamebgimg, (display_width, display_height)), (0, 0))
 
 graadnum = 0
-graadtext = "easy"
+graadtext = "makkelijk"
 def graad():
     time.sleep(0.3)
     global graadnum
@@ -74,11 +74,11 @@ def graad():
     if graadnum > 2:
         graadnum = 0
     if graadnum == 0:
-        graadtext = "Easy"
+        graadtext = "makkelijk"
     elif graadnum == 1:
-        graadtext = "Medium"
+        graadtext = "gemiddeld"
     elif graadnum == 2:
-        graadtext = "Hard"
+        graadtext = "moeilijk"
 
 volumenum = 0.9
 volumetext = 90
@@ -126,12 +126,12 @@ def optiesmenu():
 
 
         # button  x-pos, y-pos, width, height
-        button("Back", buttonposx, button1ypos, buttonwidth, buttonheight, blue, bright_blue, "opt6")
-        button((str(volumetext)+ "%"), buttonposx + (display_width / 6), button2ypos, 100, buttonheight, blue, bright_blue,"opt7")
+        button("Vorige", buttonposx, button1ypos, buttonwidth, buttonheight, blue, bright_blue, "opt6")
+        button((str(volumetext)+ "%"), buttonposx + (display_width / 6), button2ypos, 130, buttonheight, blue, bright_blue,"opt7")
         button("Volume", buttonposx, button2ypos, buttonwidth, buttonheight, blue, bright_blue, "opt7")
         button("Scoreboard", buttonposx, button3ypos, buttonwidth, buttonheight, blue, bright_blue, "opt8")
-        button(str(graadtext), buttonposx + (display_width/6), button4ypos, 100, buttonheight, blue, bright_blue, "opt9")
-        button("Difficulty", buttonposx, button4ypos, buttonwidth, buttonheight, blue, bright_blue, "opt9")
+        button(str(graadtext), buttonposx + (display_width/6), button4ypos, 130, buttonheight, blue, bright_blue, "opt9")
+        button("Moeilijkheid", buttonposx, button4ypos, buttonwidth, buttonheight, blue, bright_blue, "opt9")
         button("{LEEG}", buttonposx, button5ypos, buttonwidth, buttonheight, blue, bright_blue, "opt10")
 
         keys = pygame.key.get_pressed()
@@ -158,9 +158,9 @@ def highscore():
                 pygame.quit()
                 quit()
         background(0,0)
-        button("back", buttonposx, display_width/2, 200, buttonheight, blue, bright_blue, "opt666")
+        button("Vorige", buttonposx, display_width/2, 200, buttonheight, blue, bright_blue, "opt666")
         largeText = pygame.font.Font("pixel.ttf", 80)
-        TextSurf, TextRect = text_objects("Highscore", largeText)
+        TextSurf, TextRect = text_objects("Scorebord", largeText)
         TextRect.center = ((display_width / 2), (100))
         scherm.blit(TextSurf, TextRect)
         pygame.display.flip()
@@ -185,10 +185,10 @@ def newgamescherm():
         scherm.blit(TextSurf, TextRect)
 
         # button  x-pos, y-pos, width, height
-        button("2 players", buttonposx, button3ypos, buttonwidth, buttonheight, blue, bright_blue, "opt45")
-        button("3 players", buttonposx, button4ypos, buttonwidth, buttonheight, blue, bright_blue, "opt46")
-        button("4 players", buttonposx, button5ypos, buttonwidth, buttonheight, blue, bright_blue, "opt47")
-        button("vorige", buttonposx, button2ypos, buttonwidth, buttonheight, blue, bright_blue, "opt48")
+        button("2 spelers", buttonposx, button3ypos, buttonwidth, buttonheight, blue, bright_blue, "opt45")
+        button("3 spelers", buttonposx, button4ypos, buttonwidth, buttonheight, blue, bright_blue, "opt46")
+        button("4 spelers", buttonposx, button5ypos, buttonwidth, buttonheight, blue, bright_blue, "opt47")
+        button("Vorige", buttonposx, button2ypos, buttonwidth, buttonheight, blue, bright_blue, "opt48")
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_ESCAPE]:
@@ -215,10 +215,10 @@ def escapemsg():
         scherm.blit(pygame.transform.scale(popup, (620, 350)), ((display_width/2)-310, (display_height/2)-140))
 
 
-        button("No", buttonposx - 150, (display_height/2) + 100, 150, buttonheight, blue, bright_blue, "opt20")
-        button("Yes ", buttonposx + 230, (display_height / 2) + 100, 150, buttonheight, blue, bright_blue, "opt1")
+        button("Nee", buttonposx - 150, (display_height/2) + 100, 150, buttonheight, blue, bright_blue, "opt20")
+        button("Ja ", buttonposx + 230, (display_height / 2) + 100, 150, buttonheight, blue, bright_blue, "opt1")
         largeText = pygame.font.Font("pixel.ttf", 50)
-        TextSurf, TextRect = text_objects("do you want to quit?", largeText)
+        TextSurf, TextRect = text_objects("Wil je stoppen?", largeText)
         TextRect.center = ((display_width / 2), (display_height / 2))
         scherm.blit(TextSurf, TextRect)
 
@@ -244,11 +244,11 @@ def mainmenu():
         scherm.blit(TextSurf, TextRect)
 
         #button  x-pos, y-pos, width, height
-        button("Quit", buttonposx, button1ypos, buttonwidth, buttonheight, blue, bright_blue, "opt1")
+        button("Stoppen", buttonposx, button1ypos, buttonwidth, buttonheight, blue, bright_blue, "opt1")
         button("Help", buttonposx, button2ypos, buttonwidth, buttonheight, blue, bright_blue, "opt2")
-        button("Options", buttonposx, button3ypos, buttonwidth, buttonheight, blue, bright_blue, "opt3")
-        button("Continue", buttonposx, button4ypos, buttonwidth, buttonheight, blue, bright_blue, "opt4")
-        button("NewGame", buttonposx, button5ypos, buttonwidth, buttonheight, blue, bright_blue, "opt5")
+        button("Opties", buttonposx, button3ypos, buttonwidth, buttonheight, blue, bright_blue, "opt3")
+        button("Verdergaan", buttonposx, button4ypos, buttonwidth, buttonheight, blue, bright_blue, "opt4")
+        button("Nieuwe spel", buttonposx, button5ypos, buttonwidth, buttonheight, blue, bright_blue, "opt5")
 
         button("Mute", display_width - (buttonheight *2), button1ypos, buttonheight, buttonheight, blue, bright_blue, "opt0")
 
@@ -285,9 +285,9 @@ def helpmenu():
         elif pagenum == 4:
             scherm.blit(pygame.transform.scale(helpmsg4, (display_width - 100, display_height - 100)), (50, 50))
 
-        button("<- page", buttonposx - 480, 600, 150, buttonheight, blue, bright_blue, "opt200")
-        button("page -> ", buttonposx + 535, 600, 150, buttonheight, blue, bright_blue, "opt201")
-        button("back", buttonposx, 600, 150, buttonheight, blue, bright_blue, "opt111")
+        button("<- Pagina", buttonposx - 480, 600, 150, buttonheight, blue, bright_blue, "opt200")
+        button("Pagina -> ", buttonposx + 535, 600, 150, buttonheight, blue, bright_blue, "opt201")
+        button("Vorige", buttonposx, 600, 150, buttonheight, blue, bright_blue, "opt111")
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_ESCAPE]:
@@ -308,7 +308,7 @@ def introscherm():
         background(0, 0)
 
         largeText = pygame.font.Font("pixel.ttf", 80)
-        TextSurf, TextRect = text_objects("press space to continue", largeText)
+        TextSurf, TextRect = text_objects("Druk spatie om verder te gaan", largeText)
         TextRect.center = ((display_width / 2), (display_height/2))
         scherm.blit(TextSurf, TextRect)
 
@@ -416,13 +416,13 @@ def game_loop():
         gamebg(0,0)
         playername = '.'
         if beurt == 1:
-            playername = "player one"
+            playername = "Speler 1"
         elif beurt == 2:
-            playername = "player two"
+            playername = "Speler 2"
         elif beurt == 3:
-            playername = "player three"
+            playername = "Speler 3"
         elif beurt == 4:
-            playername = "player four"
+            playername = "Speler 4"
         drawboard()
         if beurt > players:
             beurt = 1
@@ -440,7 +440,7 @@ def game_loop():
             quit()
 
         smallText = pygame.font.Font("pixel.ttf", 27)
-        textSurf, textRect = text_objects("current turn: " + playername, smallText)
+        textSurf, textRect = text_objects("Huidige beurt: " + playername, smallText)
         textRect.center = (190, 30)
         scherm.blit(textSurf, textRect)
 
