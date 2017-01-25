@@ -1,6 +1,7 @@
 import pygame
 import time
 import random
+import psycopg2
 
 pygame.init()
 fullscreen = pygame.FULLSCREEN
@@ -138,6 +139,33 @@ def optiesmenu():
             escapemsg()
 
         pygame.display.flip()
+
+def highscore():
+    global hsmenu
+    hsmenu = True
+    clock.tick(60)
+    # def download_scores():
+    #     return interact_with_database("SELECT * FROM highscore")
+    #
+    # def download_top_score():
+    #     result = interact_with_database("SELECT * FROM highscore ORDER BY score DESC")[0]
+    #     return result
+
+    while hsmenu:
+        for event in pygame.event.get():
+        # print(event)
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+        background(0,0)
+        button("back", buttonposx, display_width/2, 200, buttonheight, blue, bright_blue, "opt666")
+        largeText = pygame.font.Font("pixel.ttf", 80)
+        TextSurf, TextRect = text_objects("Highscore", largeText)
+        TextRect.center = ((display_width / 2), (100))
+        scherm.blit(TextSurf, TextRect)
+        pygame.display.flip()
+        # topscore = download_top_score()
+        # allscore = download_scores()
 
 def newgamescherm():
     global NGmenu
@@ -330,7 +358,8 @@ def button(msg,x,y,w,h,ic,ac,action=None):
         elif click[0] == 1 and action == "opt7":
             volumeh()
         elif click[0] == 1 and action == "opt8":
-            pass
+            highscore()
+            time.sleep(0.2)
         elif click[0] == 1 and action == "opt9":
             graad()
         elif click[0] == 1 and action == "opt10":
@@ -347,6 +376,8 @@ def button(msg,x,y,w,h,ic,ac,action=None):
             time.sleep(0.2)
             pagenum += 1
         elif click[0] == 1 and action == "opt111":
+            optiesmenu()
+        elif click[0] == 1 and action == "opt666":
             optiesmenu()
         elif click[0] == 1 and action == "opt45":
             global players
