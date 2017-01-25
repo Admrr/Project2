@@ -338,8 +338,10 @@ def button(msg,x,y,w,h,ic,ac,action=None):
         elif click[0] == 1 and action == "opt0":
             mute()
         elif click[0] == 1 and action == "opt2":
+            time.sleep(0.3)
             helpmenu()
         elif click[0] == 1 and action == "opt3":
+            time.sleep(0.3)
             global Mmenu
             Mmenu = False
             optiesmenu()
@@ -358,8 +360,8 @@ def button(msg,x,y,w,h,ic,ac,action=None):
         elif click[0] == 1 and action == "opt7":
             volumeh()
         elif click[0] == 1 and action == "opt8":
+            time.sleep(0.3)
             highscore()
-            time.sleep(0.2)
         elif click[0] == 1 and action == "opt9":
             graad()
         elif click[0] == 1 and action == "opt10":
@@ -376,8 +378,10 @@ def button(msg,x,y,w,h,ic,ac,action=None):
             time.sleep(0.2)
             pagenum += 1
         elif click[0] == 1 and action == "opt111":
+            time.sleep(0.3)
             optiesmenu()
         elif click[0] == 1 and action == "opt666":
+            time.sleep(0.3)
             optiesmenu()
         elif click[0] == 1 and action == "opt45":
             global players
