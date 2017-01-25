@@ -39,7 +39,7 @@ button4ypos = display_height - (buttonheight * 6.5)
 button5ypos = display_height - (buttonheight * 8)
 
 
-scherm = pygame.display.set_mode((display_width, display_height), fullscreen)
+scherm = pygame.display.set_mode((display_width, display_height))
 pygame.display.set_caption('')
 clock = pygame.time.Clock()
 
@@ -222,7 +222,32 @@ def escapemsg():
         TextRect.center = ((display_width / 2), (display_height / 2))
         scherm.blit(TextSurf, TextRect)
 
+        pygame.display.flip()
 
+def pauzemsg():
+    global pzmenu
+    pzmenu = True
+    clock.tick(60)
+    while pzmenu:
+        for event in pygame.event.get():
+            # print(event)
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+        s = pygame.Surface((display_width, display_height))
+        s.fill((225, 225, 225))
+        s.set_alpha(4)
+        scherm.blit(s, (0, 0))
+
+        scherm.blit(pygame.transform.scale(popup, (620, 350)), ((display_width/2)-310, (display_height/2)-140))
+
+
+        button("Nee", buttonposx - 150, (display_height/2) + 100, 150, buttonheight, blue, bright_blue, "opt21")
+        button("Ja ", buttonposx + 230, (display_height / 2) + 100, 150, buttonheight, blue, bright_blue, "opt22")
+        largeText = pygame.font.Font("pixel.ttf", 50)
+        TextSurf, TextRect = text_objects("Wil je stoppen?", largeText)
+        TextRect.center = ((display_width / 2), (display_height / 2))
+        scherm.blit(TextSurf, TextRect)
 
         pygame.display.flip()
 
@@ -369,6 +394,11 @@ def button(msg,x,y,w,h,ic,ac,action=None):
         elif click[0] == 1 and action == "opt20":
             global escmenu
             escmenu = False
+        elif click[0] == 1 and action == "opt21":
+            global pzmenu
+            pzmenu = False
+        elif click[0] == 1 and action == "opt22":
+            mainmenu()
         elif click[0] == 1 and action == "opt200":
             global pagenum
             time.sleep(0.2)
@@ -386,14 +416,41 @@ def button(msg,x,y,w,h,ic,ac,action=None):
         elif click[0] == 1 and action == "opt45":
             global players
             players = 2
+            global startx1, starty1, startx2, starty2, startx3, starty3, startx4, starty4
+            startx1 = 595
+            starty1 = 695
+            startx2 = 772
+            starty2 = 695
+            startx3 = 949
+            starty3 = 695
+            startx4 = 1126
+            starty4 = 695
             game_loop()
         elif click[0] == 1 and action == "opt46":
             global players
             players = 3
+            global startx1, starty1, startx2, starty2, startx3, starty3, startx4, starty4
+            startx1 = 595
+            starty1 = 695
+            startx2 = 772
+            starty2 = 695
+            startx3 = 949
+            starty3 = 695
+            startx4 = 1126
+            starty4 = 695
             game_loop()
         elif click[0] == 1 and action == "opt47":
             global players
             players = 4
+            global startx1, starty1, startx2, starty2, startx3, starty3, startx4, starty4
+            startx1 = 595
+            starty1 = 695
+            startx2 = 772
+            starty2 = 695
+            startx3 = 949
+            starty3 = 695
+            startx4 = 1126
+            starty4 = 695
             game_loop()
         elif click[0] == 1 and action == "opt48":
             time.sleep(0.3)
@@ -440,8 +497,7 @@ def game_loop():
         elif keys[pygame.K_RIGHT]:
             move("right")
         elif keys[pygame.K_ESCAPE]:
-            pygame.QUIT()
-            quit()
+            pauzemsg()
 
         smallText = pygame.font.Font("pixel.ttf", 27)
         textSurf, textRect = text_objects("Huidige beurt: " + playername, smallText)
@@ -451,15 +507,19 @@ def game_loop():
         renderplayer()
         pygame.display.flip()
         clock.tick(30)
+player1img = pygame.image.load('player1.png')
+player2img = pygame.image.load('player2.png')
+player3img = pygame.image.load('player3.png')
+player4img = pygame.image.load('player4.png')
 
 def player1(x,y):
-    pygame.draw.circle(scherm, (0,255,0),(x,y),15)
+    scherm.blit( pygame.transform.scale(player1img, (40,40)), (x-25,y-25))
 def player2(x,y):
-    pygame.draw.circle(scherm, (255, 255, 0), (x, y), 15)
+    scherm.blit(pygame.transform.scale(player2img, (40, 40)), (x - 25, y - 25))
 def player3(x,y):
-    pygame.draw.circle(scherm, (255, 0, 0), (x, y), 15)
+    scherm.blit(pygame.transform.scale(player3img, (40, 40)), (x - 25, y - 25))
 def player4(x,y):
-    pygame.draw.circle(scherm, (0, 0, 255), (x, y), 15)
+    scherm.blit(pygame.transform.scale(player4img, (40, 40)), (x - 25, y - 25))
 
 def renderplayer():
     if players == 2:
