@@ -230,89 +230,67 @@ def imagesq():
        elif n == 13:
            #A is juist
            qimg(eq13)
-           button("A. De Zwanenboot", qbuttonposx, qbutton1ypos, qbuttonwidth, qbuttonheight, qred, qred, "opt451")
-           button("B. De Pannenkoekenboot", qbuttonposx, qbutton2ypos, qbuttonwidth, qbuttonheight, qred, qred, "opt450")
-           button("C. De Berenboot", qbuttonposx, qbutton3ypos, qbuttonwidth, qbuttonheight, qred, qred, "opt450")
+           vragen("A. De Zwanenboot", "B. De Pannenkoekenboot", "C. De Berenboot", "opt451", "opt450", "opt450")
            qmusic()
            pygame.display.flip()
        elif n == 14:
            #C is juist
            qimg(eq14)
-           button("A. Cinerama", qbuttonposx, qbutton1ypos, qbuttonwidth, qbuttonheight, qred, qred, "opt450")
-           button("B. Pathe de Kuip", qbuttonposx, qbutton2ypos, qbuttonwidth, qbuttonheight, qred, qred, "opt450")
-           button("C. LantarenVenster", qbuttonposx, qbutton3ypos, qbuttonwidth, qbuttonheight, qred, qred, "opt451")
+           vragen("A. Cinerama", "B. Pathe de Kuip", "C. LantarenVenster", "opt450", "opt450", "opt451")
            qmusic()
            pygame.display.flip()
        elif n == 15:
            qimg(eq15)
            #A is juist
-           button("A. Mullerpier", qbuttonposx, qbutton1ypos, qbuttonwidth, qbuttonheight, qred, qred, "opt451")
-           button("B. Pier 80", qbuttonposx, qbutton2ypos, qbuttonwidth, qbuttonheight, qred, qred, "opt450")
-           button("C. Schouwburgplein", qbuttonposx, qbutton3ypos, qbuttonwidth, qbuttonheight, qred, qred, "opt450")
+           vragen("A. Mullerpier", "B. Pier 80", "C. Schouwburgplein", "opt451", "opt450", "opt450")
            qmusic()
            pygame.display.flip()
        elif n == 16:
            #A is juist
            qimg(eq16)
-           button("A. De Witte de Withstraat", qbuttonposx, qbutton1ypos, qbuttonwidth, qbuttonheight, qred, qred, "opt451")
-           button("B. Kruiskade", qbuttonposx, qbutton2ypos, qbuttonwidth, qbuttonheight, qred, qred, "opt450")
-           button("C. Doedesstraat", qbuttonposx, qbutton3ypos, qbuttonwidth, qbuttonheight, qred, qred, "opt450")
+           vragen("A. De Witte de Withstraat", "B. Kruiskade", "C. Doedesstraat", "opt451", "opt450", "opt450")
            qmusic()
            pygame.display.flip()
        elif n == 17:
            #C is juist
            qimg(eq17)
-           button("A. Willemsbrug", qbuttonposx, qbutton1ypos, qbuttonwidth, qbuttonheight, qred, qred, "opt450")
-           button("B. Spaansebrug", qbuttonposx, qbutton2ypos, qbuttonwidth, qbuttonheight, qred, qred, "opt450")
-           button("C. Erasmusbrug", qbuttonposx, qbutton3ypos, qbuttonwidth, qbuttonheight, qred, qred, "opt451")
+           vragen("A. Willemsbrug", "B. Spaansebrug", "C. Erasmusbrug", "opt450", "opt450",  "opt451")
            qmusic()
            pygame.display.flip()
        elif n == 18:
            #C is juist
            qimg(eq18)
-           button("A. Noordelijk Film Festival", qbuttonposx, qbutton1ypos, qbuttonwidth, qbuttonheight, qred, qred, "opt450")
-           button("B. Vlier Film Festival", qbuttonposx, qbutton2ypos, qbuttonwidth, qbuttonheight, qred, qred, "opt450")
-           button("C. Internationaal Film Festival", qbuttonposx, qbutton3ypos, qbuttonwidth, qbuttonheight, qred, qred, "opt451")
+           vragen("A. Noordelijk Film Festival", "B. Vlier Film Festival", "C. Internationaal Film Festival", "opt450", "opt450", "opt451")
            qmusic()
            pygame.display.flip()
        elif n == 19:
            #A is juist
            qimg(eq19)
-           button("A. Diergaarde Blijdorp", qbuttonposx, qbutton1ypos, qbuttonwidth, qbuttonheight, qred, qred, "opt451")
-           button("B. Plaswijckpark", qbuttonposx, qbutton2ypos, qbuttonwidth, qbuttonheight, qred, qred, "opt450")
-           button("C. Utropia", qbuttonposx, qbutton3ypos, qbuttonwidth, qbuttonheight, qred, qred, "opt450")
+           vragen("A. Diergaarde Blijdorp", "B. Plaswijckpark", "C. Utropia", "opt451", "opt450", "opt450")
            qmusic()
            pygame.display.flip()
        elif n == 20:
            #A is juist
            qimg(eq20)
-           button("A. De Markthal", qbuttonposx, qbutton1ypos, qbuttonwidth, qbuttonheight, qred, qred, "opt451")
-           button("B. De Verwoeste Stad", qbuttonposx, qbutton2ypos, qbuttonwidth, qbuttonheight, qred, qred, "opt450")
-           button("C. De Boeg", qbuttonposx, qbutton3ypos, qbuttonwidth, qbuttonheight, qred, qred, "opt450")
+           vragen("A. De Markthal", "B. De Verwoeste Stad", "C. De Boeg", "opt451", "opt450", "opt450")
            qmusic()
            pygame.display.flip()
        elif n == 21:
            #B is juist
            qimg(eq21)
-           button("A. Wijnhaven", qbuttonposx, qbutton1ypos, qbuttonwidth, qbuttonheight, qred, qred, "opt450")
-           button("B. Rijnhaven", qbuttonposx, qbutton2ypos, qbuttonwidth, qbuttonheight, qred, qred, "opt451")
-           button("C. Parkhaven", qbuttonposx, qbutton3ypos, qbuttonwidth, qbuttonheight, qred, qred, "opt450")
+           vragen("A. Wijnhaven", "B. Rijnhaven", "C. Parkhaven", "opt450", "opt451", "opt450")
            qmusic()
            pygame.display.flip()
        elif n == 22:
            #B is juist
            qimg(eq22)
-           button("A. Rotterdam Creeper Walk", qbuttonposx, qbutton1ypos, qbuttonwidth, qbuttonheight, qred, qred, "opt450")
-           button("B. Rotterdam Zombie Walk", qbuttonposx, qbutton2ypos, qbuttonwidth, qbuttonheight, qred, qred, "opt451")
-           button("C. Rotterdam Undead Walk", qbuttonposx, qbutton3ypos, qbuttonwidth, qbuttonheight, qred, qred, "opt450")
+           vragen("A. Rotterdam Creeper Walk", "B. Rotterdam Zombie Walk", "C. Rotterdam Undead Walk", "opt450", "opt451", "opt450")
            qmusic()
            pygame.display.flip()
        elif n == 23:
            #C is juist
            qimg(eq23)
-           button("A. Rotterdam Gaypride", qbuttonposx, qbutton1ypos, qbuttonwidth, qbuttonheight, qred, qred, "opt450")
-           button("B. Rotterdam LGBT parade", qbuttonposx, qbutton2ypos, qbuttonwidth, qbuttonheight, qred, qred, "opt450")
-           button("C. Rotterdam Pride", qbuttonposx, qbutton3ypos, qbuttonwidth, qbuttonheight, qred, qred, "opt451")
+           vragen("A. Rotterdam Gaypride", "B. Rotterdam LGBT Parade", "C. Rotterdam Pride", "op450", "opt450", "opt451")
            qmusic()
            pygame.display.flip()
        elif n == 24:
