@@ -282,6 +282,31 @@ def mainmenu():
             escapemsg()
 
         pygame.display.flip()
+        
+def winscreen():
+    global wscreen
+    wscreen = True
+    clock.tick(60)
+    while wscreen:
+        for event in pygame.event.get():
+        # print(event)
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+        s = pygame.Surface((display_width, display_height))
+        s.fill((225, 225, 225))
+        s.set_alpha(4)
+        scherm.blit(s, (0, 0))
+
+        scherm.blit(pygame.transform.scale(popup, (620, 350)), ((display_width/2)-310, (display_height/2)-140))
+
+        button("Continue", buttonposx, display_width/2, 150, buttonheight, blue, bright_blue, "opt767")
+        largeText = pygame.font.Font("pixel.ttf", 50)
+        TextSurf, TextRect = text_objects("You win: " + "hiiiiiiiiiiiiii " + "Score:" +"1000000", largeText)
+        TextRect.center = ((display_width / 2), (display_height / 2))
+        scherm.blit(TextSurf, TextRect)
+        pygame.display.flip()
+
 
 
 def helpmenu():
