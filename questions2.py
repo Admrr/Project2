@@ -48,7 +48,7 @@ def button(msg,x,y,w,h,ic,ac,action=None):
     scherm.blit(textSurf, textRect)
 
 def cat():
-
+    pass
 def imagesq():
 
     eq1 = pygame.image.load('entertainment1.png')
