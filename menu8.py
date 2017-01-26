@@ -510,15 +510,7 @@ def winscreen():
         scherm.blit(TextSurf, TextRect)
         scherm.blit(TextSurf2, TextRect2)
         pygame.display.flip()
-def movekey():
-    global mkmenu
-    mkmenu = True
-    while mkmenu == True:
-        button("Boven", buttonposx - 380, 530, 110, buttonheight, blue, bright_blue, "opt600")
-        button("Vorige", buttonposx - 380, 460, 110, buttonheight, blue, bright_blue, "opt111")
-        button("Beneden", buttonposx - 380, 600, 110, buttonheight, blue, bright_blue, "opt601")
-        button("Links", buttonposx - 500, 600, 110, buttonheight, blue, bright_blue, "opt602")
-        button("Rechts", buttonposx - 260, 600, 110, buttonheight, blue, bright_blue, "opt603")
+    
 
 def game_loop():
     gameExit = False
@@ -554,7 +546,10 @@ def game_loop():
         scherm.blit(textSurf, textRect)
 
         renderplayer()
-        pygame.display.flip()
+        button("Boven", buttonposx - 380, 530, 110, buttonheight, blue, bright_blue, "opt600")
+        button("Beneden", buttonposx - 380, 600, 110, buttonheight, blue, bright_blue, "opt601")
+        button("Links", buttonposx - 500, 600, 110, buttonheight, blue, bright_blue, "opt602")
+        button("Rechts", buttonposx - 260, 600, 110, buttonheight, blue, bright_blue, "opt603")
         clock.tick(30)
 player1img = pygame.image.load('player1.png')
 player2img = pygame.image.load('player2.png')
