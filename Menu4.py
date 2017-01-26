@@ -409,6 +409,10 @@ def button(msg,x,y,w,h,ic,ac,action=None):
             mainmenu()
         elif click[0] == 1 and action == "opt7":
             volumeh()
+        elif click[0] == 1 and action == "opt767":
+            global Omenu
+            Omenu = False
+            mainmenu()
         elif click[0] == 1 and action == "opt8":
             time.sleep(0.3)
             highscore()
